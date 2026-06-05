@@ -217,6 +217,7 @@ class GradientWaveLoginForm {
             `;
             document.head.appendChild(style);
         }
+    }
     validatePassword() {
     const password = this.passwordInput.value;
 
