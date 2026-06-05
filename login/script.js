@@ -35,15 +35,15 @@ class GradientWaveLoginForm {
     }
     
     setupPasswordToggle() {
+        if (!this.passwordToggle || !
+    this.passwordInput) return;
         
-    this.passwordToggle.addEventListener('click', (e) => {
-        alert("KEKLIK");
-
-        const type = this.passwordInput.type === 'password' ? 'text' : 'password';
-        this.passwordInput.type = type;
+    this.passwordToggle.addEventListener('click', () => {
+        const isHidden = this.passwordInput.type === 'password';
+        this.passwordInput.type = isHidden ? 'text' : 'password';
     });
-        
-    }
+        }  
+    
     
     setupSocialButtons() {
         this.socialButtons.forEach(button => {
