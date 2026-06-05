@@ -15,6 +15,9 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const data = await res.json();
 
     if (data.status === "success") {
+    localStorage.setItem("username", data.username);
+    showLoginSuccessAndRedirect(data.username);
+    }
         // simpan username
             localStorage.setItem("username", data.username);
             
