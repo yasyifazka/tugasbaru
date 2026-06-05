@@ -21,7 +21,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
         // JANGAN redirect langsung
         setTimeout(() => {
-            window.location.href = "../index.html";
+            window.location.href = "../dashbord.html";
         }, 1800);
 
     } else {
