@@ -2,7 +2,7 @@
 class GradientWaveLoginForm {
     constructor() {
         this.form = document.getElementById('loginForm');
-        this.emailInput = document.getElementById('email');
+        this.emailInput = document.getElementById('username');
         this.passwordInput = document.getElementById('password');
         this.passwordToggle = document.getElementById('passwordToggle');
         this.submitButton = this.form.querySelector('.gradient-button');
@@ -219,42 +219,20 @@ class GradientWaveLoginForm {
             document.head.appendChild(style);
         }
     }
-    
+
     validateEmail() {
-        const email = this.emailInput.value.trim();
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        
-        if (!email) {
-            this.showError('email', 'Email address is required');
-            return false;
-        }
-        
-        if (!emailRegex.test(email)) {
-            this.showError('email', 'Please enter a valid email address');
-            return false;
-        }
-        
-        this.clearError('email');
-        return true;
+    const username = this.emailInput.value.trim();
+
+    if (!username) {
+        this.showError('username', 'Username wajib diisi');
+        return false;
+    }
+
+    this.clearError('username');
+    return true;
     }
     
-    validatePassword() {
-        const password = this.passwordInput.value;
-        
-        if (!password) {
-            this.showError('password', 'Password is required');
-            return false;
-        }
-        
-        if (password.length < 6) {
-            this.showError('password', 'Password must be at least 6 characters long');
-            return false;
-        }
-        
-        this.clearError('password');
-        return true;
-    }
-    
+
     showError(field, message) {
         const formGroup = document.getElementById(field).closest('.form-group');
         const errorElement = document.getElementById(`${field}Error`);
