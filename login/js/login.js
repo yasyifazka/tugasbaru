@@ -88,3 +88,14 @@ function showLoginSuccess(username) {
         document.head.appendChild(style);
     }
 }
+
+const toggle = document.getElementById("passwordToggle");
+const password = document.getElementById("password");
+
+toggle.addEventListener("click", () => {
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password";
+    }
+});
