@@ -24,7 +24,7 @@ class GradientWaveLoginForm {
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
         this.emailInput.addEventListener('blur', () => this.validateEmail());
         this.passwordInput.addEventListener('blur', () => this.validatePassword());
-        this.emailInput.addEventListener('input', () => this.clearError('email'));
+        this.emailInput.addEventListener('input', () => this.clearError('username'));
         this.passwordInput.addEventListener('input', () => this.clearError('password'));
         
         // Add wave effects to inputs
