@@ -13,6 +13,8 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     });
 
     const data = await res.json();
+    console.log(data);
+    alert(JSON.stringify(data));
 
     if (data.status === "success") {
         localStorage.setItem("username", data.username);
