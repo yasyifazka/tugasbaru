@@ -23,11 +23,24 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 });
 
 function showSuccess(username) {
-    const form = document.querySelector(".login-form");
-    const divider = document.querySelector(".divider");
-    const social = document.querySelector(".social-login");
-    const signup = document.querySelector(".signup-link");
-
+    document.body.innerHTML = `
+        <div style="
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.8);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:white;
+            font-size:20px;
+            flex-direction:column;
+            font-family:sans-serif;
+        ">
+            <h1>Welcome back!</h1>
+            <p>${username}</p>
+        </div>
+    `;
+}
     // sembunyikan elemen login
     form.style.display = "none";
     divider.style.display = "none";
