@@ -16,20 +16,29 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
     if (data.status === "success") {
         localStorage.setItem("username", data.username);
-        showSuccess();
+        showSuccess(data.username);
     } else {
         alert("Username / Password salah");
     }
 });
 
-function showSuccess() {
-    // sembunyikan form login
-    document.querySelector(".login-form").style.display = "none";
-    document.querySelector(".divider").style.display = "none";
-    document.querySelector(".social-login").style.display = "none";
-    document.querySelector(".signup-link").style.display = "none";
+function showSuccess(username) {
+    const form = document.querySelector(".login-form");
+    const divider = document.querySelector(".divider");
+    const social = document.querySelector(".social-login");
+    const signup = document.querySelector(".signup-link");
 
-    // tampilkan success message
-    const success = document.getElementById("successMessage");
-    success.classList.add("show");
-}
+    // sembunyikan elemen login
+    form.style.display = "none";
+    divider.style.display = "none";
+    social.style.display = "none";
+    signup.style.display = "none";
+
+    // tampilkan welcome message
+    const box = document.getElementById("successMessage");
+    box.style.display = "block";
+
+    // ubah teks (opsional)
+    box.querySelector("h3").innerText = "Welcome back!";
+    box.querySelector("p").innerText = username;
+        }
