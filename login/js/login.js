@@ -16,56 +16,20 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
     if (data.status === "success") {
         localStorage.setItem("username", data.username);
-        showLoginSuccess(data.username);
+        showSuccess();
     } else {
-        alert("Username atau Password salah");
+        alert("Username / Password salah");
     }
 });
 
-function showLoginSuccess(username) {
-    const overlay = document.createElement("div");
+function showSuccess() {
+    // sembunyikan form login
+    document.querySelector(".login-form").style.display = "none";
+    document.querySelector(".divider").style.display = "none";
+    document.querySelector(".social-login").style.display = "none";
+    document.querySelector(".signup-link").style.display = "none";
 
-    overlay.style.cssText = `
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.65);
-        backdrop-filter: blur(10px);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        color: white;
-        z-index: 9999;
-        font-family: sans-serif;
-    `;
-
-    overlay.innerHTML = `
-        <div style="text-align:center;">
-            <div style="
-                width:60px;
-                height:60px;
-                border:4px solid #fff;
-                border-top:4px solid transparent;
-                border-radius:50%;
-                animation: spin 1s linear infinite;
-                margin:0 auto 20px;
-            "></div>
-
-            <h2>Welcome back, ${username}</h2>
-        </div>
-    `;
-
-    document.body.appendChild(overlay);
-
-    if (!document.getElementById("anim")) {
-        const style = document.createElement("style");
-        style.id = "anim";
-        style.innerHTML = `
-            @keyframes spin {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
-    }
+    // tampilkan success message
+    const success = document.getElementById("successMessage");
+    success.classList.add("show");
 }
