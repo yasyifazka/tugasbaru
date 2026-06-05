@@ -218,6 +218,17 @@ class GradientWaveLoginForm {
             `;
             document.head.appendChild(style);
         }
+    validatePassword() {
+    const password = this.passwordInput.value;
+
+    if (!password) {
+        this.showError('password', 'Password wajib diisi');
+        return false;
+    }
+
+    this.clearError('password');
+    return true;
+    
     }
 
     validateEmail() {
