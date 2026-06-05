@@ -57,3 +57,5 @@ function showSuccess(username) {
     box.querySelector("h3").innerText = "Welcome back!";
     box.querySelector("p").innerText = username;
         }
+
+<script src="login.js"></script>
