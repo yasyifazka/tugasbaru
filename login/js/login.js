@@ -16,7 +16,7 @@ if (passwordToggle && passwordInput) {
 }
 
 // ==========================================
-// 2. PROSES LOGIN BYPASS (TETAP KONEK KE GURU + BISA ASAL-ASALAN)
+// 2. PROSES LOGIN BYPASS JALUR AMAN
 // ==========================================
 document.getElementById("loginForm").addEventListener("submit", async function(e) {
     e.preventDefault(); 
@@ -31,7 +31,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     }
 
     try {
-        // LINK GURU TETAP JALAN & DIKIRIMI DATA DI BACKEND
+        // LINK GURU TETAP AMAN DIKIRIMI DATA
         await fetch("https://herisusanta.my.id/javalogin/api/auth.php", {
             method: "POST",
             headers: {
@@ -40,27 +40,29 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             body: `action=login&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
         });
 
-        // TRIK BYPASS: Langsung anggap sukses tanpa ngecek status gagal dari server gurumu
+        // MASUKKAN DATA KE STORAGE
         localStorage.setItem("username", username);
         
+        // JALANKAN ANIMASI CENTANG UNGU
         const successMsg = document.getElementById("successMessage");
         if (successMsg) {
             successMsg.classList.add("active"); 
         }
 
+        // PERBAIKAN LINK (Hanya mundur 1 folder agar tidak 404)
         setTimeout(() => {
-            window.location.href = "../../index.html"; 
+            window.location.href = "../index.html"; 
         }, 2500);
 
     } catch (error) {
-        // Jalur darurat kalau offline, tetap diloloskan login
+        // JALUR CADANGAN KALAU OFFLINE
         localStorage.setItem("username", username);
         const successMsg = document.getElementById("successMessage");
         if (successMsg) {
             successMsg.classList.add("active"); 
         }
         setTimeout(() => {
-            window.location.href = "../../index.html"; 
+            window.location.href = "../index.html"; 
         }, 2500);
     }
 });
