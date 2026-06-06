@@ -21,12 +21,27 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         alert("Username / Password salah");
     }
 });
-
 function showSuccess(username) {
-    const form = document.querySelector(".login-form");
-    const divider = document.querySelector(".divider");
-    const social = document.querySelector(".social-login");
-    const signup = document.querySelector(".signup-link");
+    // sembunyikan form login
+    document.getElementById("loginForm").style.display = "none";
+
+    // sembunyikan bagian lain
+    document.querySelector(".divider").style.display = "none";
+    document.querySelector(".social-login").style.display = "none";
+    document.querySelector(".signup-link").style.display = "none";
+
+    // tampilkan welcome box
+    const successBox = document.getElementById("successMessage");
+
+    successBox.style.display = "block";
+    successBox.classList.add("show");
+
+    successBox.querySelector("h3").textContent =
+        `Welcome back, ${username}!`;
+
+    successBox.querySelector("p").textContent =
+        "Login berhasil";
+}
 
     // sembunyikan elemen login
     form.style.display = "none";
