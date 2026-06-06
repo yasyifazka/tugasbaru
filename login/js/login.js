@@ -1,4 +1,4 @@
-alert("login.js kebaca");
+alert("LOGIN JS BERHASIL DIMUAT");
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
