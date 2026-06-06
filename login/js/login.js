@@ -16,7 +16,7 @@ if (passwordToggle && passwordInput) {
 }
 
 // ==========================================
-// 2. PROSES LOGIN BYPASS JALUR AMAN
+// 2. PROSES LOGIN BYPASS + SINKRONISASI CSS (.show)
 // ==========================================
 document.getElementById("loginForm").addEventListener("submit", async function(e) {
     e.preventDefault(); 
@@ -40,29 +40,44 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             body: `action=login&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
         });
 
-        // MASUKKAN DATA KE STORAGE
         localStorage.setItem("username", username);
         
-        // JALANKAN ANIMASI CENTANG UNGU
+        // --- PROSES MUNCULKAN ANIMASI YANG BENAR ---
+        // 1. Sembunyikan isi form login bawaan agar tidak bertumpuk berantakan
+        document.getElementById("loginForm").style.display = "none";
+        document.querySelector(".login-header").style.display = "none";
+        if(document.querySelector(".divider")) document.querySelector(".divider").style.display = "none";
+        if(document.querySelector(".social-login")) document.querySelector(".social-login").style.display = "none";
+        if(document.querySelector(".signup-link")) document.querySelector(".signup-link").style.display = "none";
+
+        // 2. Picu class '.show' sesuai dengan setingan file style.css kamu!
         const successMsg = document.getElementById("successMessage");
         if (successMsg) {
-            successMsg.classList.add("active"); 
+            successMsg.classList.add("show"); 
         }
 
-        // PERBAIKAN LINK (Hanya mundur 1 folder agar tidak 404)
+        // Tunggu 3 detik menikmati keindahan lingkaran centang birunya, lalu pindah toko
         setTimeout(() => {
             window.location.href = "../index.html"; 
-        }, 2500);
+        }, 3000);
 
     } catch (error) {
-        // JALUR CADANGAN KALAU OFFLINE
+        // JALUR CADANGAN JIKA OFFLINE
         localStorage.setItem("username", username);
+        
+        document.getElementById("loginForm").style.display = "none";
+        document.querySelector(".login-header").style.display = "none";
+        if(document.querySelector(".divider")) document.querySelector(".divider").style.display = "none";
+        if(document.querySelector(".social-login")) document.querySelector(".social-login").style.display = "none";
+        if(document.querySelector(".signup-link")) document.querySelector(".signup-link").style.display = "none";
+
         const successMsg = document.getElementById("successMessage");
         if (successMsg) {
-            successMsg.classList.add("active"); 
+            successMsg.classList.add("show"); 
         }
+
         setTimeout(() => {
             window.location.href = "../index.html"; 
-        }, 2500);
+        }, 3000);
     }
 });
